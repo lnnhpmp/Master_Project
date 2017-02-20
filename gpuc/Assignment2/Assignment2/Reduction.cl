@@ -72,14 +72,15 @@ __kernel void Reduction_DecompUnroll(const __global uint* inArray, __global uint
 		barrier(CLK_LOCAL_MEM_FENCE);
 	}
 
-	// unroll the loop
+	// warp
 	uint warp = LSizeHalf > 32 ? 32 : LSizeHalf;
 	if (LID < 32)
-		for (uint stride = warp; stride > 1; stride >>= 1)
+		for (uint stride = warp; stride >= 1; stride >>= 1)
 			localBlock[LID] += localBlock[LID + stride];
+
 	// write the result back to global memory
 	if (LID == 0)
-		outArray[get_group_id(0)] = localBlock[0] + localBlock[1];
+		outArray[get_group_id(0)] = localBlock[0];
 }
 
 __kernel void Reduction_DecompCompleteUnroll(const __global uint* inArray, __global uint* outArray, uint N, __local uint* localBlock)
@@ -103,18 +104,22 @@ __kernel void Reduction_DecompCompleteUnroll(const __global uint* inArray, __glo
 	barrier(CLK_LOCAL_MEM_FENCE);
 
 	// local reduction
-	for (uint stride = LSizeHalf; stride > 32; stride >>= 1) {
-		if (LID < stride)
-			localBlock[LID] += localBlock[LID + stride];
+	if (LID < 128) {
+		localBlock[LID] += localBlock[LID + 128];
+		barrier(CLK_LOCAL_MEM_FENCE);
+	}
+	if (LID < 64) {
+		localBlock[LID] += localBlock[LID + 64];
 		barrier(CLK_LOCAL_MEM_FENCE);
 	}
 
-	// unroll the loop
+	// warp
 	uint warp = LSizeHalf > 32 ? 32 : LSizeHalf;
 	if (LID < 32)
-		for (uint stride = warp; stride > 1; stride >>= 1)
+		for (uint stride = warp; stride >= 1; stride >>= 1)
 			localBlock[LID] += localBlock[LID + stride];
+
 	// write the result back to global memory
 	if (LID == 0)
-		outArray[get_group_id(0)] = localBlock[0] + localBlock[1];
+		outArray[get_group_id(0)] = localBlock[0];
 }

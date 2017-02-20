@@ -23,7 +23,7 @@ bool CAssignment2::DoCompute()
 	{
 		size_t LocalWorkSize[3] = {256, 1, 1};
 		//CReductionTask reduction(1024 * 1024 * 16);
-		CReductionTask reduction(8);
+		CReductionTask reduction(1024 * 1024 * 16 + 13);
 		//CReductionTask reduction(15);
 		RunComputeTask(reduction, LocalWorkSize);
 	}

@@ -23,11 +23,11 @@ bool CAssignment2::DoCompute()
 	{
 		size_t LocalWorkSize[3] = {256, 1, 1};
 		//CReductionTask reduction(1024 * 1024 * 16);
-		CReductionTask reduction(1024 * 1024 * 16 + 3);
+		CReductionTask reduction(8);
 		//CReductionTask reduction(15);
 		RunComputeTask(reduction, LocalWorkSize);
 	}
-	/*
+	
 	// Task 2: parallel prefix sum
 	cout<<"########################################"<<endl;
 	cout<<"Running parallel prefix sum task..."<<endl<<endl;
@@ -36,7 +36,7 @@ bool CAssignment2::DoCompute()
 		CScanTask scan(1024 * 1024 * 64, LocalWorkSize[0]);
 		RunComputeTask(scan, LocalWorkSize);
 	}
-	*/
+	
 
 	return true;
 }

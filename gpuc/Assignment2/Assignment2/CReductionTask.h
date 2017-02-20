@@ -48,6 +48,7 @@ protected:
 	void Reduction_SequentialAddressing(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3]);
 	void Reduction_Decomp(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3]);
 	void Reduction_DecompUnroll(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3]);
+	void Reduction_DecompCompleteUnroll(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3]);
 
 	void ExecuteTask(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3], unsigned int task);
 	void TestPerformance(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3], unsigned int task);
@@ -61,7 +62,7 @@ protected:
 	unsigned int		*m_hInput;
 	// results
 	unsigned int		m_resultCPU;
-	unsigned int		m_resultGPU[4];
+	unsigned int		m_resultGPU[5];
 
 	cl_mem				m_dPingArray;
 	cl_mem				m_dPongArray;
@@ -72,6 +73,7 @@ protected:
 	cl_kernel			m_SequentialAddressingKernel;
 	cl_kernel			m_DecompKernel;
 	cl_kernel			m_DecompUnrollKernel;
+	cl_kernel			m_DecompCompleteUnroll;
 
 };
 

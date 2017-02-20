@@ -13,11 +13,12 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////////
 // CReductionTask
 
-string g_kernelNames[4] = {
+string g_kernelNames[5] = {
 	"interleavedAddressing",
 	"sequentialAddressing",
 	"kernelDecomposition",
-	"kernelDecompositionUnroll"
+	"kernelDecompositionUnroll",
+	"DecompositionCompleteUnroll"
 };
 
 CReductionTask::CReductionTask(size_t ArraySize)
@@ -25,7 +26,7 @@ CReductionTask::CReductionTask(size_t ArraySize)
 	m_dPingArray(NULL),
 	m_dPongArray(NULL),
 	m_Program(NULL), 
-	m_InterleavedAddressingKernel(NULL), m_SequentialAddressingKernel(NULL), m_DecompKernel(NULL), m_DecompUnrollKernel(NULL)
+	m_InterleavedAddressingKernel(NULL), m_SequentialAddressingKernel(NULL), m_DecompKernel(NULL), m_DecompUnrollKernel(NULL), m_DecompCompleteUnroll(NULL)
 {
 }
 
@@ -73,6 +74,9 @@ bool CReductionTask::InitResources(cl_device_id Device, cl_context Context)
 	m_DecompUnrollKernel = clCreateKernel(m_Program, "Reduction_DecompUnroll", &clError);
 	V_RETURN_FALSE_CL(clError, "Failed to create kernel: Reduction_DecompUnroll.");
 
+	m_DecompCompleteUnroll = clCreateKernel(m_Program, "Reduction_DecompCompleteUnroll", &clError);
+	V_RETURN_FALSE_CL(clError, "Failed to create kernel: Reduction_DecompCompleteUnroll.");
+
 	return true;
 }
 
@@ -89,6 +93,7 @@ void CReductionTask::ReleaseResources()
 	SAFE_RELEASE_KERNEL(m_SequentialAddressingKernel);
 	SAFE_RELEASE_KERNEL(m_DecompKernel);
 	SAFE_RELEASE_KERNEL(m_DecompUnrollKernel);
+	SAFE_RELEASE_KERNEL(m_DecompCompleteUnroll);
 
 	SAFE_RELEASE_PROGRAM(m_Program);
 }
@@ -99,11 +104,13 @@ void CReductionTask::ComputeGPU(cl_context Context, cl_command_queue CommandQueu
 	ExecuteTask(Context, CommandQueue, LocalWorkSize, 1);
 	ExecuteTask(Context, CommandQueue, LocalWorkSize, 2);
 	ExecuteTask(Context, CommandQueue, LocalWorkSize, 3);
+	ExecuteTask(Context, CommandQueue, LocalWorkSize, 4);
 
 	TestPerformance(Context, CommandQueue, LocalWorkSize, 0);
 	TestPerformance(Context, CommandQueue, LocalWorkSize, 1);
 	TestPerformance(Context, CommandQueue, LocalWorkSize, 2);
 	TestPerformance(Context, CommandQueue, LocalWorkSize, 3);
+	TestPerformance(Context, CommandQueue, LocalWorkSize, 4);
 
 }
 
@@ -130,7 +137,7 @@ bool CReductionTask::ValidateResults()
 {
 	bool success = true;
 
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < 5; i++)
 		if(m_resultGPU[i] != m_resultCPU)
 		{
 			cout<<"Validation of reduction kernel "<<g_kernelNames[i]<<" failed." << endl;
@@ -217,22 +224,46 @@ void CReductionTask::Reduction_DecompUnroll(cl_context Context, cl_command_queue
 
 	for (unsigned int n = m_N; n > 1;) {
 		globalWorkSize = CLUtil::GetGlobalWorkSize(n / 2 + n % 2, localWorkSize);
-		size_t nGroups = globalWorkSize / localWorkSize;
 
-		// Set kernel Arguments
+		// set kernel Arguments
 		clErr = clSetKernelArg(m_DecompUnrollKernel, 0, sizeof(cl_mem), (void*)&m_dPingArray);
 		clErr |= clSetKernelArg(m_DecompUnrollKernel, 1, sizeof(cl_mem), (void*)&m_dPongArray);
 		clErr |= clSetKernelArg(m_DecompUnrollKernel, 2, sizeof(cl_uint), (void*)&n);
-		//allocate shared(local) memory for the kernel
+		// allocate shared(local) memory for the kernel
 		clErr |= clSetKernelArg(m_DecompUnrollKernel, 3, sizeof(cl_uint) * localWorkSize, NULL);
 		V_RETURN_CL(clErr, "Error setting m_DecompUnrollKernel arguments.");
 		
-		//Execute the kernel
+		// execute the kernel
 		clErr |= clEnqueueNDRangeKernel(CommandQueue, m_DecompUnrollKernel, 1, NULL, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
 		V_RETURN_CL(clErr, "Error executing kernel!");
 
-		// decrease n to the number of remaining elements after one iteration
-		n = nGroups;
+		n = globalWorkSize / localWorkSize;
+		swap(m_dPingArray, m_dPongArray);
+	}
+}
+
+void CReductionTask::Reduction_DecompCompleteUnroll(cl_context Context, cl_command_queue CommandQueue, size_t LocalWorkSize[3])
+{
+	cl_int clErr;
+	size_t localWorkSize = LocalWorkSize[0];
+	size_t globalWorkSize;
+
+	for (unsigned int n = m_N; n > 1;) {
+		globalWorkSize = CLUtil::GetGlobalWorkSize(n / 2 + n % 2, localWorkSize);
+
+		// set kernel Arguments
+		clErr = clSetKernelArg(m_DecompCompleteUnroll, 0, sizeof(cl_mem), (void*)&m_dPingArray);
+		clErr |= clSetKernelArg(m_DecompCompleteUnroll, 1, sizeof(cl_mem), (void*)&m_dPongArray);
+		clErr |= clSetKernelArg(m_DecompCompleteUnroll, 2, sizeof(cl_uint), (void*)&n);
+		// allocate shared(local) memory for the kernel
+		clErr |= clSetKernelArg(m_DecompCompleteUnroll, 3, sizeof(cl_uint) * localWorkSize, NULL);
+		V_RETURN_CL(clErr, "Error setting m_DecompCompleteUnroll arguments.");
+
+		// execute the kernel
+		clErr |= clEnqueueNDRangeKernel(CommandQueue, m_DecompCompleteUnroll, 1, NULL, &globalWorkSize, &localWorkSize, 0, NULL, NULL);
+		V_RETURN_CL(clErr, "Error executing m_DecompCompleteUnroll!");
+
+		n = globalWorkSize / localWorkSize;
 		swap(m_dPingArray, m_dPongArray);
 	}
 }
@@ -255,6 +286,9 @@ void CReductionTask::ExecuteTask(cl_context Context, cl_command_queue CommandQue
 			break;
 		case 3:
 			Reduction_DecompUnroll(Context, CommandQueue, LocalWorkSize);
+			break;
+		case 4:
+			Reduction_DecompCompleteUnroll(Context, CommandQueue, LocalWorkSize);
 			break;
 	}
 
@@ -293,6 +327,9 @@ void CReductionTask::TestPerformance(cl_context Context, cl_command_queue Comman
 				break;
 			case 3:
 				Reduction_DecompUnroll(Context, CommandQueue, LocalWorkSize);
+				break;
+			case 4:
+				Reduction_DecompCompleteUnroll(Context, CommandQueue, LocalWorkSize);
 				break;
 		}
 	}

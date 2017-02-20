@@ -1,0 +1,4 @@
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment2/Assignment2.build/CMakeFiles/Assignment.dir
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment2/Assignment2.build/CMakeFiles/ALL_BUILD.dir
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment2/Assignment2.build/CMakeFiles/ZERO_CHECK.dir
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment2/Assignment2.build/Common/CMakeFiles/GPUCommon.dir

@@ -1,0 +1,16 @@
+﻿生成启动时间为 2017/2/20 21:13:17。
+     1>项目“D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment2\Assignment2.build\Assignment.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         F:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\include" /Zi /nologo /W3 /WX- /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Assignment.dir\Debug\\" /Fd"Assignment.dir\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment2\Assignment2\CReductionTask.cpp"
+         CReductionTask.cpp
+       Link:
+         F:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment2\Assignment2.build\Debug\Assignment.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\lib\Win32\OpenCL.lib" Common\Debug\GPUCommon.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment2/Assignment2.build/Debug/Assignment.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment2/Assignment2.build/Debug/Assignment.lib" /MACHINE:X86 /SAFESEH  /machine:X86 Assignment.dir\Debug\CAssignment2.obj
+         Assignment.dir\Debug\CReductionTask.obj
+         Assignment.dir\Debug\CScanTask.obj
+         Assignment.dir\Debug\main.obj
+         Assignment.vcxproj -> D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment2\Assignment2.build\Debug\Assignment.exe
+     1>已完成生成项目“D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment2\Assignment2.build\Assignment.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.64

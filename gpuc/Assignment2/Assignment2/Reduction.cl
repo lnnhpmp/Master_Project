@@ -2,7 +2,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 __kernel void Reduction_InterleavedAddressing(__global uint* array, uint stride, uint N) {
 	int index = get_global_id(0) * stride * 2;
-	if ((index + stride < N) && index < N)
+	if (index + stride < N)
 		array[index] += array[index + stride];
 }
 
@@ -103,26 +103,33 @@ __kernel void Reduction_DecompCompleteUnroll(const __global uint* inArray, __glo
 	localBlock[LID] = res;
 	barrier(CLK_LOCAL_MEM_FENCE);
 
-	// local reduction
 	/*
-	if (LSize >= 512) {
-		if (LID < 256) {
-			localBlock[LID] += localBlock[LID + 256];
-			barrier(CLK_LOCAL_MEM_FENCE);
-		}
-	}
-	*/
 	if (LID < 128) {
-		localBlock[LID] += localBlock[LID + 128];
-		barrier(CLK_LOCAL_MEM_FENCE);
-	}
-	if (LID < 64) {
-		localBlock[LID] += localBlock[LID + 64];
+		localBlock[LID] += localBlock[LID + warp];
 		barrier(CLK_LOCAL_MEM_FENCE);
 	}
 
+	if (LID < 64) {
+		localBlock[LID] += localBlock[LID + warp];
+		barrier(CLK_LOCAL_MEM_FENCE);
+	}
+	*/
+
+	// local reduction
 	// warp
-	uint warp = LSizeHalf > 32 ? 32 : LSizeHalf;
+	uint warp = LSizeHalf > 128 ? 128 : LSizeHalf;
+	if (LID < 128) {
+		localBlock[LID] += localBlock[LID + warp];
+		barrier(CLK_LOCAL_MEM_FENCE);
+	}
+
+	warp = LSizeHalf > 64 ? 64 : LSizeHalf;
+	if (LID < 64) {
+		localBlock[LID] += localBlock[LID + warp];
+		barrier(CLK_LOCAL_MEM_FENCE);
+	}
+
+	warp = LSizeHalf > 32 ? 32 : LSizeHalf;
 	if (LID < 32)
 		for (uint stride = warp; stride >= 1; stride >>= 1)
 			localBlock[LID] += localBlock[LID + stride];

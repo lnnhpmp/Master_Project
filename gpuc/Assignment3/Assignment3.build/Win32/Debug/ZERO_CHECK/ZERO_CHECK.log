@@ -1,0 +1,11 @@
+﻿生成启动时间为 2017/2/10 1:37:35。
+     1>项目“D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment3\Assignment3\Assignment3.build\ZERO_CHECK.vcxproj”在节点 2 上(Build 个目标)。
+     1>CustomBuild:
+         Checking Build System
+         CMake does not need to re-run because D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment3/Assignment3/Assignment3.build/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment3/Assignment3/Assignment3.build/Common/CMakeFiles/generate.stamp is up-to-date.
+     1>已完成生成项目“D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment3\Assignment3\Assignment3.build\ZERO_CHECK.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.30

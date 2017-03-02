@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CAssignmentBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CLUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CAssignmentBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CLUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CommonDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\IComputeTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\IGUIEnabledComputeTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Common\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F89C34E6-0511-38F0-A8FF-EC254CD40410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4BB6B9B4-DE18-3245-AC8B-1CEC2C500720}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

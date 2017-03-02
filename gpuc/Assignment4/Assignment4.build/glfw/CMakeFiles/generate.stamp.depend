@@ -1,0 +1,18 @@
+# CMake generation dependency list for this directory.
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment4/Assignment4/glfw/CMakeLists.txt
+C:/Program Files/CMake/share/cmake-3.7/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/FindThreads.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/CheckLibraryExists.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/CheckSymbolExists.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/CheckIncludeFile.c.in
+C:/Program Files/CMake/share/cmake-3.7/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.7/Modules/CMakeParseArguments.cmake
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment4/Assignment4/glfw/src/glfw_config.h.in
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment4/Assignment4/glfw/src/glfwConfig.cmake.in
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment4/Assignment4/glfw/src/glfwConfigVersion.cmake.in
+D:/KIT/Erstsemester/Pratikum_GPU Computing/Assignment4/Assignment4/glfw/src/glfw3.pc.in

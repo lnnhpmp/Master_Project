@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CClothSimulationTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CParticleSystemTask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CAssignment4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CTriMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CGLTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\GLCommon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\HLSL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CClothSimulationTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CParticleSystemTask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CAssignment4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CTriMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CGLTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\GLCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\HLSL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\HLSLEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\clothsim.cl" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\ParticleSystem.cl" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\Scan.cl" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\forcefield.frag" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\mesh.frag" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\meshtextured.frag" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\particles.frag" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\forcefield.vert" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\mesh.vert" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\meshtextured.vert" />
+    <None Include="D:\KIT\Erstsemester\Pratikum_GPU Computing\Assignment4\Assignment4\particles.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F89C34E6-0511-38F0-A8FF-EC254CD40410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4BB6B9B4-DE18-3245-AC8B-1CEC2C500720}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
